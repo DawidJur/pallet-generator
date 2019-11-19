@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+
+
+<section id="container">
+    <div id="inputs-container">
+        <div id="inputs-errors"></div>
+        Wysokość palety <input type="number" value="800" id="pallet-length"> mm<br>
+        Szerokość palety <input type="number" value="1200" id="pallet-width"> mm<br>
+        <br>
+        Ilość desek wierzchnich <input type="number" value="7" id="pallet-top-boards"><br>
+        Ilość desek poprzecznych <input type="number" value="3" id="pallet-transverse-boards"><br>
+        <br>
+        Szerokość wierzcniej deski <input type="number" value="75" id="pallet-top-board-width"> mm<br>
+        Szerokość poprzecznej deski <input type="number" value="75" id="pallet-transverse-board-width"> mm<br>
+        Grubość każdej deski <input type="number" value="19" id="board-thickness"> mm<br>
+        <br>
+        Ilość desek spodnich <input type="number" value="3" id="base-boards-number"><br>
+        Szerokość deski spodniej <input type="number" value="75" id="base-board-width"><br>
+        Wysokość klocka <input type="number" value="75" id="base-block-height"> mm<br>
+    </div>
+    <div id="pallet-view">
+        <div id="pallet-top-container">
+            <div id="pallet-top-width-info">
+
+            </div>
+            <div id="pallet-top-height-info">
+
+            </div>
+            <div class="grid-container">
+                <div id="pallet-top-top-boards">
+
+                </div>
+                <div id="pallet-top-transverse-boards">
+
+                </div>
+
+                <div id="pallet-top-bottom-boards">
+
+                </div>
+            </div>
+        </div>
+
+        <div id="pallet-front-container">
+            <div id="pallet-front-height-info">
+
+            </div>
+            <div class="grid-container">
+                <div id="pallet-front-top-boards">
+
+                </div>
+                <div id="pallet-front-transverse-boards">
+                    <div class="board"></div>
+                </div>
+                <div id="pallet-front-base-block-height">
+
+                </div>
+                <div id="pallet-front-base-board">
+
+                </div>
+            </div>
+        </div>
+
+        <div id="pallet-side-container">
+            <div>
+
+            </div>
+            <div class="grid-container">
+                <div class="pallet-side-top-boards">
+                    <div class="board"></div>
+                </div>
+                <div id="pallet-side-transverse-boards">
+
+                </div>
+                <div id="pallet-side-blocks">
+
+                </div>
+                <div class="pallet-side-bottom-boards">
+                    <div class="board"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="assets/js/validator.js"></script>
+<script src="assets/js/script.js"></script>
+</body>
+</html>
