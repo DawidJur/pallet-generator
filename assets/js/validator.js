@@ -1,7 +1,13 @@
 class PalletDataValidator
 {
+    minNumberOfBoards = 2;
+    inputsContainer = $("#inputs-container > input");
+
+    constructor(pallet) {
+        this.pallet = pallet;
+    }
+
     validate = () => {
-        this.getDataFromForm();
         if (!this.areAllInputsFilled()) {
             $('#inputs-errors').text('Nie wszystkie pola formularza zostały wypełnione');
             return false;
@@ -14,7 +20,7 @@ class PalletDataValidator
             $('#inputs-errors').text('Nie wszystkie liczby są większe od 0');
             return false;
         }
-        if (!this.doPalletsHaveAtLeast2Boards()) {
+        if (!this.doPalletsHaveMinNumberOfBoards(this.minNumberOfBoards)) {
             $('#inputs-errors').text('Paleta musi mieć co najmniej 2 deski');
             return false;
         }
@@ -32,53 +38,40 @@ class PalletDataValidator
         return true;
     }
 
-    getDataFromForm = () => {
-        this.allInputs = $("#inputs-container > input");
-
-        this.width = $('#pallet-width').val();
-        this.length = $('#pallet-length').val();
-        this.numberOHorizontalBoards = $('#pallet-top-boards').val();
-        this.numberOfVerticalBoards = $('#pallet-transverse-boards').val();
-        this.widthOfVerticalBoard = $('#pallet-top-board-width').val();
-        this.widthOfHorizontalBoard =  $('#pallet-transverse-board-width').val();
-        this.baseBlockHeight =  $('#base-block-height').val();
-        this.baseBoardWidth = $('#base-board-width').val();
-        this.baseBoardNumber = $('#base-boards-number').val();
-        this.boardThickness = $('#board-thickness').val();
-    }
-
     areAllInputsFilled = () => {
-        return (this.allInputs.filter(function () { return $.trim($(this).val()).length === 0}).length === 0);
+        return (this.inputsContainer.filter(function () { return $.trim($(this).val()).length === 0}).length === 0);
     }
 
     arentBoardsWiderThatPallet = () => {
-        return (this.width >= this.numberOfVerticalBoards * this.widthOfVerticalBoard &&
-            this.length >= this.numberOHorizontalBoards * this.widthOfHorizontalBoard);
+        return (this.pallet.width >= this.pallet.numberOfVerticalBoards * this.pallet.widthOfVerticalBoard &&
+            this.pallet.length >= this.pallet.numberOHorizontalBoards * this.pallet.widthOfHorizontalBoard);
     }
 
-    doPalletsHaveAtLeast2Boards = () => {
-        return (this.numberOHorizontalBoards >= 2 &&
-            this.numberOfVerticalBoards >= 2 &&
-            this.baseBoardNumber >= 2);
+    doPalletsHaveMinNumberOfBoards = (boards) => {
+        return (this.pallet.numberOHorizontalBoards >= boards &&
+            this.pallet.numberOfVerticalBoards >= boards &&
+            this.pallet.baseBoardNumber >= boards);
     }
 
     isNumberOfBoardsInt = () => {
-        return (Math.floor(this.numberOHorizontalBoards) == this.numberOHorizontalBoards &&
-        Math.floor(this.numberOfVerticalBoards) == this.numberOfVerticalBoards);
+        return (Math.floor(this.pallet.numberOHorizontalBoards) == this.pallet.numberOHorizontalBoards &&
+        Math.floor(this.pallet.numberOfVerticalBoards) == this.pallet.numberOfVerticalBoards);
     }
+
     areAllNumbersGreaterThan0 = () => {
-        return (this.width > 0 &&
-        this.length > 0 &&
-        this.numberOHorizontalBoards > 0 &&
-        this.numberOfVerticalBoards > 0 &&
-        this.widthOfVerticalBoard > 0 &&
-        this.widthOfHorizontalBoard > 0);
+        return (this.pallet.width > 0 &&
+        this.pallet.length > 0 &&
+        this.pallet.numberOHorizontalBoards > 0 &&
+        this.pallet.numberOfVerticalBoards > 0 &&
+        this.pallet.widthOfVerticalBoard > 0 &&
+        this.pallet.widthOfHorizontalBoard > 0);
     }
+
     areWidthAndHeightCorrect = () => {
         let maxLength = 5000;
         let maxWidth = 2400;
 
-        return (this.length <= maxLength &&
-        this.width <= maxWidth);
+        return (this.pallet.length <= maxLength &&
+        this.pallet.width <= maxWidth);
     }
 }
